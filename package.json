@@ -1,0 +1,16 @@
+{
+  "name": "node-mysql",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "mysql": "^2.10.2"
+  },
+  "engines": {
+  "node": "5.9.1"
+  },
+  "main": "weerapp-server.js",
+  "scripts": {
+  "start": "node weerapp-server.js"
+  }
+}

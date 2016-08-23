@@ -1,0 +1,401 @@
+<p>
+    <a href="#/">Terug naar zoekresultaten</a>
+</p>
+
+Weervoorspelling voor {{ city }}
+<hr />
+Dagen: <a href="#/forecast/2" ng-class="{ 'bg-primary': days === '2' }">2</a> | <a href="#/forecast/5" ng-class="{ 'bg-primary': days === '5' }">5</a> | <a href="#/forecast/7" ng-class="{ 'bg-primary': days === '7' }">7</a>
+<hr />
+<div ng-repeat="w in weatherResult.list">
+<!--    <div class="row">
+        <div class="col-md-12">
+            <weather-report weather-day="w" convert-to-standard="weatherShow" convert-to-date="convertToDate(dt)" date-format="EEE - MMMM d, y. HH:mm uur"></weather-report>
+        </div>
+    </div>-->
+    <div ng-cloak>
+    
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+     
+      <md-tab label="Globaal">
+        <md-content class="md-padding">
+          <h1 class="md-display-2"></h1>
+             <div class="panel panel-default">
+              <div class="table-responsive">
+                  <table class="table table-striped table-hover">
+                    <tr>
+                        <th>Weertype</th>
+                        <th>Beschrijving</th>
+                        <th>Temperatuur dag(ºC)</th>
+                        <th>Temperatuur nacht(ºC)</th>
+                        <th>Neerslag(mm)</th>
+                        <th>Windsnelheid(m/s)</th>
+                    </tr>
+                          <td>
+                            <div class="panel-body">
+                                <i class="wi wi-owm-{{ w.weather[0].id }}" id="w_iconsbig"></i>
+                              </div>
+                           </td>
+                           <td>
+                               <div class="panel-body">
+                                 {{ w.weather[0].description }}
+                                </div>
+                           </td>
+                           <td>
+                                <div class="panel-body">
+                                     {{ w.temp.day }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                     {{ w.temp.night }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                     {{ w.rain || 0 }}
+                                </div>
+                            </td>                
+                            <td>
+                                <div class="panel-body">
+                                     {{ w.speed }}
+                                </div>
+                      </td>
+                    </table>
+                </div>
+            </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Komende 24 uur" >
+        <md-content class="md-padding">
+          <h1 class="md-display-2"></h1>
+              <div class="panel panel-default">
+                   <div class="table-responsive">
+                      <table class="table table-striped table-hover">
+                        <tr>
+                            <th>Tijd(u.)</th>
+                            <th>Weertype</th>
+                            <th>Beschrijving</th>
+                            <th>Temperatuur(ºC)</th>
+                            <th>Neerslag(mm)</th>
+                            <th>Windsnelheid(m/s)</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8].dt_txt.substring(10, 16) }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    <i class="wi wi-owm-{{weatherResult2.list[$index * 8].weather[0].id }}" id="w_icons"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8].weather[0].description }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8].main.temp_min | limitTo : 4 }}º/{{ weatherResult2.list[$index * 8].main.temp_max | limitTo : 4 }}º
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8].rain["3h"] | limitTo : 4 || 0 }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8].wind.speed | limitTo : 4 }}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 1].dt_txt.substring(10, 16) }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    <i class="wi wi-owm-{{weatherResult2.list[$index * 8 + 1].weather[0].id }}" id="w_icons"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 1].weather[0].description }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 1].main.temp_min | limitTo : 4 }}º/{{ weatherResult2.list[$index * 8 + 1].main.temp_max | limitTo : 4 }}º
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 1].rain["3h"] | limitTo : 4 || 0 }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 1].wind.speed | limitTo : 4 }}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 2].dt_txt.substring(10, 16) }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    <i class="wi wi-owm-{{weatherResult2.list[$index * 8 + 2].weather[0].id }}" id="w_icons"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 2].weather[0].description }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 2].main.temp_min | limitTo : 4 }}º/{{ weatherResult2.list[$index * 8 + 2].main.temp_max | limitTo : 4 }}º
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 2].rain["3h"] | limitTo : 4 || 0 }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 2].wind.speed | limitTo : 4 }}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 3].dt_txt.substring(10, 16) }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    <i class="wi wi-owm-{{weatherResult2.list[$index * 8 + 3].weather[0].id }}" id="w_icons"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 3].weather[0].description }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 3].main.temp_min | limitTo : 4 }}º/{{ weatherResult2.list[$index * 8 + 3].main.temp_max | limitTo : 4 }}º
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 3].rain["3h"] | limitTo : 4 || 0 }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 3].wind.speed | limitTo : 4 }}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 4].dt_txt.substring(10, 16) }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    <i class="wi wi-owm-{{weatherResult2.list[$index * 8 + 4].weather[0].id }}" id="w_icons"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 4].weather[0].description }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 4].main.temp_min | limitTo : 4 }}º/{{ weatherResult2.list[$index * 8 + 4].main.temp_max | limitTo : 4 }}º
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 4].rain["3h"] | limitTo : 4 || 0 }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 4].wind.speed | limitTo : 4 }}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 5].dt_txt.substring(10, 16) }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    <i class="wi wi-owm-{{weatherResult2.list[$index * 8 + 5].weather[0].id }}" id="w_icons"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 5].weather[0].description }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 5].main.temp_min | limitTo : 4 }}º/{{ weatherResult2.list[$index * 8 + 5].main.temp_max | limitTo : 4 }}º
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 5].rain["3h"] | limitTo : 4 || 0 }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 5].wind.speed | limitTo : 4 }}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 6].dt_txt.substring(10, 16) }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    <i class="wi wi-owm-{{weatherResult2.list[$index * 8 + 6].weather[0].id }}" id="w_icons"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 6].weather[0].description }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 6].main.temp_min | limitTo : 4 }}º/{{ weatherResult2.list[$index * 8 + 6].main.temp_max | limitTo : 4 }}º
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 6].rain["3h"] | limitTo : 4 || 0 }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 6].wind.speed | limitTo : 4 }}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 7].dt_txt.substring(10, 16) }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    <i class="wi wi-owm-{{weatherResult2.list[$index * 8 + 7].weather[0].id }}" id="w_icons"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 7].weather[0].description }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 7].main.temp_min | limitTo : 4 }}º/{{ weatherResult2.list[$index * 8 + 7].main.temp_max | limitTo : 4 }}º
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 7].rain["3h"] | limitTo : 4 || 0 }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="panel-body">
+                                    {{ weatherResult2.list[$index * 8 + 7].wind.speed | limitTo : 4 }}
+                                </div>
+                            </td>
+                        </tr>
+                 </table>
+                </div>     
+            </div>
+        </md-content>
+      </md-tab>
+            <md-tab label="Temperatuur">
+        <md-content class="md-padding">
+          <h1 class="md-display-2"></h1>
+            <div class='with-3d-shadow with-transitions'>
+                   <div ng-controller="lineChartCtrl2">
+                    <nvd3 options='options' data='data'></nvd3>
+                    </div>
+                </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Windsnelheid">
+        <md-content class="md-padding">
+          <h1 class="md-display-2"></h1>
+              <div class='with-3d-shadow with-transitions'>
+                    <div ng-controller="lineChartCtrl3">
+                        <nvd3 options="options" data="data"></nvd3>
+                    </div>
+              </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Neerslag">
+        <md-content class="md-padding">
+          <h1 class="md-display-2"></h1>
+              <div class='with-3d-shadow with-transitions'>
+                    <div ng-controller="lineChartCtrl4">
+                        <nvd3 options="options" data="data"></nvd3>
+                    </div>
+              </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Luchtvochtigheid">
+        <md-content class="md-padding">
+          <h1 class="md-display-2"></h1>
+              <div class='with-3d-shadow with-transitions'>
+                    <div ng-controller="lineChartCtrl5">
+                        <nvd3 options="options" data="data"></nvd3>
+                    </div>
+              </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Luchtdruk">
+        <md-content class="md-padding">
+          <h1 class="md-display-2"></h1>
+              <div class='with-3d-shadow with-transitions'>
+                    <div ng-controller="lineChartCtrl6">
+                        <nvd3 options="options" data="data"></nvd3>
+                    </div>
+              </div>
+        </md-content>
+      </md-tab>
+
+
+    </md-tabs>
+  </md-content>
+</div>
+<p><weather-titel weather-day="w" convert-to-date="convertToDate(dt)" date-format="EEE - MMMM d, y"></weather-titel></p>
+
+</div>

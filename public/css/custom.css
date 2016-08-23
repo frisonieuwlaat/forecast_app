@@ -1,0 +1,72 @@
+@font-face {
+    font-family: weatherFont;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/font/weathericons-regular-webfont.eot'), 
+         url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/font/weathericons-regular-webfont.ttf') format('truetype'),
+         url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/font/weathericons-regular-webfont.woff'),
+         url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/font/weathericons-regular-webfont.woff2'),
+         url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/font/weathericons-regular-webfont.svg') format('svg');
+}
+
+th, td {
+    text-align: center;
+/*    font-family: Lato;*/
+}
+th {
+    color: rgb(63, 81, 181);
+}
+td {
+    font-size: 15px;
+}
+
+#w_iconsbig {
+    font-size: 200%;
+    color: crimson;
+}
+
+#w_icons {
+    font-size: 200%;
+    color: crimson;
+}
+#w_title {
+    font-size: 170%;
+    margin-top:12px;
+    color: white;
+}
+
+md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+    color: crimson;
+    background: crimson;
+}
+
+.panel-default>.panel-heading {
+    background-color: crimson;
+    color: white;
+}
+
+.navbar-default {
+    background-color:crimson;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+}
+
+md-content {
+    background-color: transparent !important;
+}
+
+md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1;
+}
+md-tabs-wrapper {
+      background: white;
+};
+
+h1:first-child {
+    margin-top: 0;
+}
